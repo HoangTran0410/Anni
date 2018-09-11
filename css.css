@@ -6,8 +6,15 @@ body {
 
 /*============ Count Down ==================*/
 #countdown {
-	background-color: black; 
-	color: white  ;
+	border-radius: 15px;
+	background-color: rgba(0, 0, 0, 0.5); 
+	color: white;
+	font-size: 50px;
+	transition-duration: 0.5s;
+}
+#countdown:hover {
+	background-color: rgba(255, 255, 255, 0.5);
+	color: black;
 }
 
 /*============ Text in Image ===============*/
@@ -145,6 +152,7 @@ body {
 	    /*background-color: #f1f1f1;*/
 	    text-align: center;
 	    color: red;
+	    border-radius: 5px;
 	}
 	.heartsDrag:hover {
 		cursor: pointer;
