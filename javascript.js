@@ -158,10 +158,11 @@ function getRndInteger(min, max) {
     return Math.random() * (max - min)  + min;
 }
 
-function newObjectDragable(str, posx, posy){
+function newObjectDragable(str, posx, posy, color){
 	var newDiv = document.createElement('div');
 	newDiv.classList.add("heartsDrag");
 	newDiv.innerHTML = str;
+	if(color) newDiv.style.color = color;
 	dragElement(newDiv);
 	newDiv.style.top = (posy || getRndInteger(0, height)) + "px";
 	newDiv.style.left = (posx || getRndInteger(0, width)) + "px";
@@ -169,7 +170,8 @@ function newObjectDragable(str, posx, posy){
 }
 
 var max = 0.5, min = -1;
-var arrStr = ['&#9752;', '&#9836;', '&#9829;', '&#9835;', '&#9753;'];
+var arrStr = ['&#9752;', '&#9753;', '&#9835;', '&#9836;', '&#9829;'];
+var strCol = ['#8f8', '#8f8', '#ff4', '#fa4', null]
 var width = window.innerWidth
 		|| document.documentElement.clientWidth
 		|| document.body.clientWidth;
@@ -182,8 +184,9 @@ window.onload = ()=>{
 	// initComparisons();
 
 	for(var i = 0; i < 10; i++){
-		var str = arrStr[Math.floor(Math.random() * arrStr.length)];
-		newObjectDragable(str);
+		var index = Math.floor(Math.random() * arrStr.length);
+		var str = arrStr[index];
+		newObjectDragable(str, null, null, strCol[index]);
 	}
 
 
