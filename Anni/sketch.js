@@ -40,7 +40,6 @@ function Thing(x, y, w, h, imgIndex){
 
 function updateThing(t){
   t.pos.add(t.vel);
-  t.vel.add(random(-.5, .5), random(-.1, 0));
 
   if(mouseIsPressed){
     noFill();
@@ -50,6 +49,8 @@ function updateThing(t){
     var d = p5.Vector.dist(createVector(mouseX, mouseY), t.pos);
     if(d < width / 20 + t.size.x){
       t.pos = createVector(mouseX, mouseY);
+    } else {
+      t.vel.add(random(-.5, .5), random(-.1, 0));
     }
   }
   
