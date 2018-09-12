@@ -14,7 +14,7 @@ function preload(){
 function setup(){
   createCanvas(windowWidth, windowHeight).position(0, 0);
   
-  for(var i = 0; i < 15; i++){
+  for(var i = 0; i < windowHeight / 50; i++){
     var sizeHeart = random(30, 70);
     heart[i] = new Thing(random(width), random(height), sizeHeart, sizeHeart, floor(random(links.length)));
   }
@@ -39,14 +39,21 @@ function Thing(x, y, w, h, imgIndex){
 }
 
 function updateThing(t){
-  t.vel.add(random(-.5, .5), random(-.1, 0));
   t.pos.add(t.vel);
 
   if(mouseIsPressed){
-    fill(170, 20, 10);
+    noFill();
+    stroke(30);
     ellipse(mouseX, mouseY, width / 10, width / 10);
-    if(p5.Vector.dist(createVector(mouseX, mouseY), t.pos) < width / 20 + t.size.x)
-      t.vel.add(createVector(mouseX - pmouseX, mouseY - pmouseY).mult(0.2));
+
+    var d = p5.Vector.dist(createVector(mouseX, mouseY), t.pos);
+    if(d < width / 20 + t.size.x){
+      t.pos = createVector(mouseX, mouseY);
+    }
+    // t.vel.add(createVector(mouseX - pmouseX, mouseY - pmouseY).mult(0.2));
+  
+  } else {
+    t.vel.add(random(-.5, .5), random(-.1, 0));
   }
   
   if(t.pos.y < 0){
