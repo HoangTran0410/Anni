@@ -14,7 +14,7 @@ function preload(){
 function setup(){
   createCanvas(windowWidth, windowHeight).position(0, 0);
   
-  for(var i = 0; i < windowHeight / 50; i++){
+  for(var i = 0; i < 15; i++){
     var sizeHeart = random(30, 70);
     heart[i] = new Thing(random(width), random(height), sizeHeart, sizeHeart, floor(random(links.length)));
   }
