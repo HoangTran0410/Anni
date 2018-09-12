@@ -52,6 +52,8 @@ function updateThing(t){
     } else {
       t.vel.add(random(-.5, .5), random(-.1, 0));
     }
+  } else {
+      t.vel.add(random(-.5, .5), random(-.1, 0));
   }
   
   if(t.pos.y < 0){
