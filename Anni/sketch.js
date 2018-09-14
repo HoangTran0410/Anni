@@ -97,7 +97,7 @@ function windowResized(){
 
 
 // ============================================
-var countDownDate = new Date("September 14, 2018 00:00:00").getTime();
+var countDownDate = new Date("October 4, 2018 00:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
