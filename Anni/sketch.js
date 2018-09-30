@@ -10,7 +10,6 @@ var links = ['https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-hear
 ];
 
 var bgNow;
-var bgs = []; // image lover
 var linksbg = [
   'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-0/cp0/e15/q65/s600x600/12718268_522801037891501_948124782210163873_n.jpg?_nc_cat=103&efg=eyJpIjoidCJ9&oh=a828fd4a2210ba5769dc603943119085&oe=5C1B7570',
   'https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/fr/cp0/e15/q65/12654694_522800921224846_5057049424931724901_n.jpg?_nc_cat=104&efg=eyJpIjoidCJ9&oh=cf6063cfd212cc976ded2a722e5c5eb0&oe=5C62CE7C',
@@ -69,7 +68,7 @@ function preload() {
   }
 
   bgNow = floor(random(linksbg.length));
-  bgs[bgNow] = loadImage(linksbg[bgNow]);
+  document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + linksbg[bgNow] + ")";
 }
 
 function setup() {
@@ -83,12 +82,12 @@ function setup() {
     left: {
       x: 100,
       y: height - 100,
-      r: 30
+      r: 50
     },
     right: {
       x: width - 100,
       y: height - 100,
-      r: 30
+      r: 50
     }
   };
 
@@ -99,8 +98,7 @@ function setup() {
 }
 
 function draw() {
-  // clear();
-  background(bgs[bgNow] || 255);
+  clear();
   noStroke();
 
   fill(0, 50);
@@ -131,9 +129,11 @@ function mouseClicked() {
 }
 
 function showBut() {
-  stroke(30);
+  strokeWeight(3);
+  stroke(229, 110, 159);
   fill(229, 110, 159, 50);
   ellipse(but.left.x, but.left.y, but.left.r * 2, but.left.r * 2);
+  stroke(130, 180, 229);
   fill(130, 180, 229, 50);
   ellipse(but.right.x, but.right.y, but.right.r * 2, but.right.r * 2);
 }
@@ -143,7 +143,7 @@ function changeBg(step) {
   if (bgNow >= linksbg.length) bgNow = 0;
   else if (bgNow < 0) bgNow = linksbg.length - 1;
 
-  bgs[bgNow] = loadImage(linksbg[bgNow]);
+  document.getElementsByTagName('body')[0].style.backgroundImage = "url(" + linksbg[bgNow] + ")";
 }
 
 function Thing(x, y, w, h, imgIndex) {
@@ -162,11 +162,15 @@ function updateThing(t) {
     ellipse(mouseX, mouseY, width / 10, width / 10);
 
     var d = p5.Vector.dist(createVector(mouseX, mouseY), t.pos);
-    if (d < width / 20 + t.size.x) {
-      t.pos = createVector(mouseX, mouseY);
-    } else {
-      t.vel.add(random(-.5, .5), random(-.1, 0));
-    }
+    if (d < 200) 
+    t.pos = p5.Vector.lerp(t.pos, createVector(mouseX, mouseY), 0.1);
+
+    // var d = p5.Vector.dist(createVector(mouseX, mouseY), t.pos);
+    // if (d < width / 20 + t.size.x) {
+    //   t.pos = createVector(mouseX, mouseY);
+    // } else {
+    //   t.vel.add(random(-.5, .5), random(-.1, 0));
+    // }
   } else {
     t.vel.add(random(-.5, .5), random(-.1, 0));
   }
@@ -199,12 +203,12 @@ function windowResized() {
     left: {
       x: 100,
       y: height - 100,
-      r: 30
+      r: 50
     },
     right: {
       x: width - 100,
       y: height - 100,
-      r: 30
+      r: 50
     }
   };
 }
