@@ -182,6 +182,10 @@ var height = window.innerHeight
 
 window.onload = ()=>{
 	// initComparisons();
+	
+	while(new Date() - countDownDate > 0) {
+		countDownDate.setYear(1900 + countDownDate.getYear() + 1);
+	}
 
 	for(var i = 0; i < 10; i++){
 		var index = Math.floor(Math.random() * arrStr.length);
